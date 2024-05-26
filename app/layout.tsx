@@ -27,25 +27,25 @@ export default function RootLayout() {
 
   useEffect(() => {
     const promise = axios.get(NOTES_URL, {
-        params: {
-          _page: currentPage,
-          _per_page: POSTS_PER_PAGE
-        }});
-    promise.then(response => { 
-        // fill
-        if (! response.status) {
+      params: {
+        _page: currentPage,
+        _per_page: POSTS_PER_PAGE,
+      },
+    });
+    promise
+      .then((response) => {
+        if (!response.status) {
           throw new Error("Failed to fetch posts");
         }
-
-        const data = response;
-
-        console.log("Data:", data);
-
-        setPosts(data.data);
-        setLastPage(data.last);
-    }).catch(error => { console.log("Encountered an error:" + error)});
-});
-  ``;
+        setPosts(response.data);
+        setLastPage(
+          Math.ceil(response.headers["x-total-count"] / POSTS_PER_PAGE)
+        );
+      })
+      .catch((error) => {
+        console.log("Encountered an error:" + error);
+      });
+  }, [currentPage]);
 
   const goToPage = (pageNumber: number) => {
     setCurrentPage(pageNumber);
