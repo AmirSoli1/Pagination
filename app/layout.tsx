@@ -1,8 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 import "./index.css";
+
+const POSTS_PER_PAGE = 10;
+const NOTES_URL = "http://localhost:3001/notes";
 
 interface Author {
   name: string;
@@ -22,27 +26,25 @@ export default function RootLayout() {
   const [lastPage, setLastPage] = useState<number>(1);
 
   useEffect(() => {
-    const fetchPosts = async (page: number) => {
-      try {
-        const response = await fetch(
-          `http://localhost:3001/notes?_page=${page}&_per_page=10`
-        );
-        if (!response.ok) {
+    const promise = axios.get(NOTES_URL, {
+        params: {
+          _page: currentPage,
+          _per_page: POSTS_PER_PAGE
+        }});
+    promise.then(response => { 
+        // fill
+        if (! response.status) {
           throw new Error("Failed to fetch posts");
         }
 
-        const data = await response.json();
+        const data = response;
 
         console.log("Data:", data);
 
         setPosts(data.data);
         setLastPage(data.last);
-      } catch (error) {
-        console.error("Error fetching posts:", error);
-      }
-    };
-    fetchPosts(currentPage);
-  }, [currentPage]);
+    }).catch(error => { console.log("Encountered an error:" + error)});
+});
   ``;
 
   const goToPage = (pageNumber: number) => {
