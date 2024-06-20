@@ -1,0 +1,360 @@
+.note-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Space between posts */
+  list-style: none; /* Remove bullet points */
+  padding: 0; /* Remove default padding */
+}
+
+.note {
+  flex: 1 1 calc(20% - 20px); /* Each post will take up 20% of the row minus the gap */
+  box-sizing: border-box;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.note:hover {
+  background-color: #e0f7fa;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: #00796b;
+}
+
+p {
+  color: #555;
+}
+
+p:last-of-type {
+  color: #009688;
+  font-style: italic;
+}
+
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.pagination button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.pagination button:hover {
+  background-color: #0056b3;
+}
+
+.pagination button.current-page {
+  font-weight: bold;
+  background-color: red;
+}
+
+/* Edit Note Form */
+.edit-note {
+  margin-top: 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.edit-note label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.edit-note input[type="text"] {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.edit-note button {
+  padding: 10px 15px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Save Button Style */
+.note button[name^="text_input_save-"] {
+  background-color: #28a745; /* Green background */
+  color: white; /* White text */
+}
+
+.note button[name^="text_input_save-"]:hover {
+  background-color: #218838; /* Darker green on hover */
+  transform: scale(1.05); /* Slightly larger on hover */
+}
+
+/* Cancel Button Style */
+.note button[name^="text_input_cancel-"] {
+  background-color: #dc3545; /* Red background */
+  color: white; /* White text */
+}
+
+.note button[name^="text_input_cancel-"]:hover {
+  background-color: #c82333; /* Darker red on hover */
+  transform: scale(1.05); /* Slightly larger on hover */
+}
+
+.edit-note button:hover {
+  background-color: #218838;
+}
+
+/* Note Title */
+.note h2 {
+  color: #00796b;
+  font-size: 1.5em;
+  margin-top: 0;
+}
+
+/* Note Content */
+.note p {
+  color: #555;
+  line-height: 1.5;
+}
+
+.note p:last-of-type {
+  color: #009688;
+  font-style: italic;
+  margin-bottom: 0;
+}
+
+/* Note Buttons */
+.note button {
+  display: inline-block;
+  padding: 10px 15px;
+  margin-top: 10px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Add New Note Form */
+.add-new-note {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Labels */
+.add-new-note label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #00796b;
+}
+
+/* Text Input Fields */
+.add-new-note input[type="text"],
+.add-new-note input[type="email"] {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Add Note Button */
+button[name="text_input_save_new_note"],
+button[name="text_input_cancel_new_note"] {
+  padding: 10px 15px;
+  background-color: #007bff; /* Blue background */
+  color: white; /* White text */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  margin-right: 10px; /* Add spacing between buttons */
+}
+
+/* Hover effect */
+button[name="text_input_save_new_note"]:hover,
+button[name="text_input_cancel_new_note"]:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: scale(1.05); /* Slightly larger on hover */
+}
+
+/* Edit Button Style */
+.note button[name^="edit-"] {
+  background-color: #218838; /* Blue background */
+  color: white; /* White text */
+}
+
+.note button[name^="edit-"]:hover {
+  background-color: #218838; /* Darker blue on hover */
+  transform: scale(1.05); /* Slightly larger on hover */
+}
+
+/* Delete Button Style */
+.note button[name^="delete-"] {
+  background-color: #dc3545; /* Red background */
+  color: white; /* White text */
+}
+
+.note button[name^="delete-"]:hover {
+  background-color: #c82333; /* Darker red on hover */
+  transform: scale(1.05); /* Slightly larger on hover */
+}
+
+/* Add Note Button */
+button[name="add_new_note"] {
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  background-color: #007bff;
+  color: white; /* White text */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  display: block; /* Ensures it takes full width of its container */
+  margin: 0 auto; /* Centers the button horizontally */
+}
+
+button[name="add_new_note"]:hover {
+  transform: scale(1.05); /* Slightly larger on hover */
+}
+
+/* Base styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Light mode styles */
+body.light-mode {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+header.light-mode {
+  background-color: #ffffff;
+  border-bottom: 1px solid #ddd;
+}
+
+button.light-mode {
+  background-color: #e0e0e0;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+button.light-mode:hover {
+  background-color: #d5d5d5;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  background-color: #333;
+  color: #f5f5f5;
+}
+
+header.dark-mode {
+  background-color: #444;
+  border-bottom: 1px solid #555;
+}
+
+button.dark-mode {
+  background-color: #555;
+  color: #f5f5f5;
+  border: 1px solid #666;
+}
+
+button.dark-mode:hover {
+  background-color: #666;
+}
+
+/* Header styles */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+h1 {
+  margin: 0;
+}
+
+button {
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* AddNote component styles */
+.add-note {
+  display: flex;
+  align-items: center;
+}
+
+.add-note input {
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  transition: background-color 0.3s, border 0.3s;
+}
+
+.add-note.light-mode input {
+  background-color: #ffffff;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+.add-note.dark-mode input {
+  background-color: #555;
+  color: #f5f5f5;
+  border: 1px solid #666;
+}
+
+.add-note button {
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.add-note.light-mode button {
+  background-color: #e0e0e0;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+.add-note.dark-mode button {
+  background-color: #555;
+  color: #f5f5f5;
+  border: 1px solid #666;
+}
+
+.add-note.light-mode button:hover {
+  background-color: #d5d5d5;
+}
+
+.add-note.dark-mode button:hover {
+  background-color: #666;
+}
