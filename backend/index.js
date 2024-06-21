@@ -9,11 +9,11 @@ const noteRouter = require("./Routes/noteRouter");
 
 const app = express();
 
-const cors = require("cors");
-
 const morgan = require("morgan");
 const fs = require("fs");
 const path = require("path");
+
+const cors = require("cors");
 
 app.use(cors());
 app.use(express.json());
@@ -21,7 +21,17 @@ app.use(express.json());
 const logStream = fs.createWriteStream(path.join("log.txt"), {
   flags: "a",
 });
-app.use(morgan("combined", { stream: logStream }));
+
+morgan.token("body", (req) => {
+  return JSON.stringify(req.body);
+});
+
+app.use(
+  morgan("[:date[clf]] :method :url :body", {
+    stream: logStream,
+  })
+);
+//app.use(morgan("common", { stream: logStream }));
 
 app.use("/api/v1/notes", noteRouter);
 

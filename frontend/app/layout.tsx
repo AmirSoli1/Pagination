@@ -272,8 +272,9 @@ function Note({
       )}
 
       <p>
-        By {note.author.name}, {note.author.email}
+        {note.author ? "By " + note.author.name + ", " + note.author.email : ""}
       </p>
+
       <button name={`edit-${note.id}`} onClick={() => setIsEditing(true)}>
         Edit
       </button>
