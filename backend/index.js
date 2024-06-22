@@ -33,7 +33,7 @@ app.use(
 );
 //app.use(morgan("common", { stream: logStream }));
 
-app.use("/api/v1/notes", noteRouter);
+app.use("/notes", noteRouter);
 
 const PORT = process.env.PORT || 3001;
 

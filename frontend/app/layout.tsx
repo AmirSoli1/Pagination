@@ -11,7 +11,7 @@ import NoteInterface from "./interfaces/NoteInterface";
 
 import "./index.css";
 
-const NOTES_URL = "http://localhost:3001/api/v1/notes";
+const NOTES_URL = "http://localhost:3001/notes";
 
 export default function RootLayout() {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -35,6 +35,7 @@ export default function RootLayout() {
         if (!response.status) {
           throw new Error("Failed to fetch notes");
         }
+        console.log(response);
         setNotes(response.data.notes);
         setLastPage(response.data.totalPages);
       })
