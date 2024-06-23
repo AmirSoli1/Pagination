@@ -17,7 +17,7 @@ export default function RootLayout() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [notes, setNotes] = useState<NoteInterface[]>([]);
   const [lastPage, setLastPage] = useState<number>(1);
-  const [isChange, setIsChange] = useState<boolean>(false); // to trigger re-fetching notes
+  const [isDeleted, setIsDeleted] = useState<boolean>(false); // to trigger re-fetching notes
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
   const toggleTheme = () => {
@@ -35,14 +35,13 @@ export default function RootLayout() {
         if (!response.status) {
           throw new Error("Failed to fetch notes");
         }
-        console.log(response);
         setNotes(response.data.notes);
         setLastPage(response.data.totalPages);
       })
       .catch((error) => {
         console.log("Encountered an error:" + error);
       });
-  }, [currentPage, isChange]);
+  }, [currentPage, isDeleted]);
 
   const goToPage = (pageNumber: number) => {
     setCurrentPage(pageNumber);
@@ -55,7 +54,7 @@ export default function RootLayout() {
         if (!response.status) {
           throw new Error("Failed to delete note");
         }
-        setIsChange(!isChange);
+        setIsDeleted(!isDeleted);
       })
       .catch((error) => {
         console.log("Encountered an error:" + error);
@@ -64,8 +63,14 @@ export default function RootLayout() {
 
   async function handleAddNote(newNote: NoteInterface) {
     try {
-      await axios.post(NOTES_URL, newNote);
-      if (currentPage === lastPage) setIsChange(!isChange);
+      const response = await axios.post(NOTES_URL, newNote);
+      if (response.status !== 201) {
+        throw new Error("Failed to add note");
+      }
+      console.log(response.data.note);
+      if (currentPage === lastPage && notes.length < 10) {
+        setNotes([...notes, response.data.note]);
+      }
     } catch (error) {
       console.log("Encountered an error:" + error);
     }

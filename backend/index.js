@@ -1,5 +1,4 @@
 require("dotenv").config();
-require("express-async-errors");
 
 const express = require("express");
 
@@ -31,7 +30,6 @@ app.use(
     stream: logStream,
   })
 );
-//app.use(morgan("common", { stream: logStream }));
 
 app.use("/notes", noteRouter);
 
