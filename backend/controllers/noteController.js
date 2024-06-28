@@ -25,6 +25,7 @@ const getNote = async (req, res) => {
     const note = await Note.find({})
       .skip(i - 1)
       .limit(1);
+
     if (!note) {
       res.status(StatusCodes.NOT_FOUND).send("note not found");
       return;
@@ -77,8 +78,6 @@ const updateNote = async (req, res) => {
 const deleteNote = async (req, res) => {
   try {
     const { i } = req.params;
-
-    console.log(i);
 
     const note = await Note.find({})
       .skip(i - 1)
