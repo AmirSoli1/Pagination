@@ -1,22 +1,10 @@
 require("dotenv").config();
 
 const mongoose_ = require("mongoose");
-const NoteModel = require("./models/Note.ts");
+const NoteModel = require("./models/Note.js");
 
-interface Author {
-  name: string;
-  email: string;
-}
-
-interface NoteInterface {
-  id: number;
-  title: string;
-  author: Author;
-  content: string;
-}
-
-const generateNotes = (numNotes: number): NoteInterface[] => {
-  const notes: NoteInterface[] = [];
+const generateNotes = () => {
+  const notes = [];
 
   for (let i = 1; i <= numNotes; ++i) {
     notes.push({
@@ -33,7 +21,7 @@ const generateNotes = (numNotes: number): NoteInterface[] => {
   return notes;
 };
 
-const main = async (numNotes: number) => {
+const main = async (numNotes) => {
   try {
     await mongoose_.connect(process.env.MONGODB_CONNECTION_URL); // Ensure database connection
 

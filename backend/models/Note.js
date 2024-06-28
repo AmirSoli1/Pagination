@@ -4,7 +4,6 @@ const NoteSchema = new mongoose.Schema({
   id: {
     type: Number,
     required: [true, "Id is required"],
-    unique: true,
   },
   title: {
     type: String,

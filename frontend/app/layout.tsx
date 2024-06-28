@@ -17,7 +17,7 @@ export default function RootLayout() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [notes, setNotes] = useState<NoteInterface[]>([]);
   const [lastPage, setLastPage] = useState<number>(1);
-  const [isDeleted, setIsDeleted] = useState<boolean>(false); // to trigger re-fetching notes
+  const [triggerFetch, setTriggerFetch] = useState<boolean>(false);
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
   const toggleTheme = () => {
@@ -41,36 +41,28 @@ export default function RootLayout() {
       .catch((error) => {
         console.log("Encountered an error:" + error);
       });
-  }, [currentPage, isDeleted]);
+  }, [currentPage, triggerFetch]);
 
   const goToPage = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };
 
   async function handleDelete(id: number) {
-    await axios
-      .delete(`${NOTES_URL}/${id}`)
-      .then((response) => {
-        if (!response.status) {
-          throw new Error("Failed to delete note");
-        }
-        setIsDeleted(!isDeleted);
-      })
-      .catch((error) => {
-        console.log("Encountered an error:" + error);
-      });
+    try {
+      const noteIndex =
+        (currentPage - 1) * 10 + notes.findIndex((note) => note.id === id) + 1;
+      console.log(noteIndex);
+      await axios.delete(`${NOTES_URL}/${noteIndex}`);
+      setTriggerFetch(!triggerFetch);
+    } catch (error) {
+      console.log("Encountered an error:" + error);
+    }
   }
 
   async function handleAddNote(newNote: NoteInterface) {
     try {
-      const response = await axios.post(NOTES_URL, newNote);
-      if (response.status !== 201) {
-        throw new Error("Failed to add note");
-      }
-      console.log(response.data.note);
-      if (currentPage === lastPage && notes.length < 10) {
-        setNotes([...notes, response.data.note]);
-      }
+      await axios.post(NOTES_URL, newNote);
+      setTriggerFetch(!triggerFetch);
     } catch (error) {
       console.log("Encountered an error:" + error);
     }
@@ -78,7 +70,11 @@ export default function RootLayout() {
 
   async function handleEditNote(newNote: NoteInterface) {
     try {
-      await axios.put(`${NOTES_URL}/${newNote.id}`, {
+      const noteIndex =
+        (currentPage - 1) * 10 +
+        notes.findIndex((note) => note.id === newNote.id) +
+        1;
+      await axios.put(`${NOTES_URL}/${noteIndex}`, {
         content: newNote.content,
       });
       setNotes(notes.map((note) => (note.id === newNote.id ? newNote : note)));
