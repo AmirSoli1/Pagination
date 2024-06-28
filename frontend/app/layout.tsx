@@ -51,7 +51,6 @@ export default function RootLayout() {
     try {
       const noteIndex =
         (currentPage - 1) * 10 + notes.findIndex((note) => note.id === id) + 1;
-      console.log(noteIndex);
       await axios.delete(`${NOTES_URL}/${noteIndex}`);
       setTriggerFetch(!triggerFetch);
     } catch (error) {

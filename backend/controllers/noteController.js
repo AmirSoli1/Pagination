@@ -12,7 +12,7 @@ const getAllNotes = async (req, res) => {
     const total = await Note.countDocuments();
     const totalPages = Math.ceil(total / limit);
 
-    res.status(StatusCodes.OK).json({ notes, totalPages, page });
+    res.status(StatusCodes.OK).json({ notes, totalPages });
   } catch (error) {
     console.log(error);
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("error fetching notes");
@@ -26,7 +26,7 @@ const getNote = async (req, res) => {
       .skip(i - 1)
       .limit(1);
 
-    if (!note) {
+    if (note.length === 0) {
       res.status(StatusCodes.NOT_FOUND).send("note not found");
       return;
     }
@@ -51,6 +51,7 @@ const updateNote = async (req, res) => {
   try {
     const { i } = req.params;
     const { content } = req.body;
+
     if (!content) {
       res.status(StatusCodes.BAD_REQUEST).send("content is required").end();
     }
@@ -58,10 +59,12 @@ const updateNote = async (req, res) => {
     const note = await Note.find({})
       .skip(i - 1)
       .limit(1);
-    if (!note) {
+
+    if (note.length === 0) {
       res.status(StatusCodes.NOT_FOUND).send("note not found");
       return;
     }
+
     const updatedNote = await Note.findOneAndUpdate(
       { id: note[0].id },
       { content },
@@ -82,7 +85,8 @@ const deleteNote = async (req, res) => {
     const note = await Note.find({})
       .skip(i - 1)
       .limit(1);
-    if (!note) {
+
+    if (note.length === 0) {
       res.status(StatusCodes.NOT_FOUND).send("note not found");
       return;
     }
