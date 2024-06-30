@@ -8,7 +8,7 @@ const getAllNotes = async (req, res) => {
   const skip = (page - 1) * limit;
 
   try {
-    const notes = await Note.find({}).skip(skip).limit(limit);
+    const notes = await Note.find({}).sort({id:1}).skip(skip).limit(limit);
     const total = await Note.countDocuments();
     const totalPages = Math.ceil(total / limit);
 
@@ -23,6 +23,7 @@ const getNote = async (req, res) => {
   try {
     const { i } = req.params;
     const note = await Note.find({})
+      .sort({ id: 1 })
       .skip(i - 1)
       .limit(1);
 
@@ -57,6 +58,7 @@ const updateNote = async (req, res) => {
     }
 
     const note = await Note.find({})
+      .sort({ id: 1 })
       .skip(i - 1)
       .limit(1);
 
@@ -83,6 +85,7 @@ const deleteNote = async (req, res) => {
     const { i } = req.params;
 
     const note = await Note.find({})
+      .sort({ id: 1 })
       .skip(i - 1)
       .limit(1);
 
