@@ -1,34 +1,22 @@
 require("dotenv").config();
 
 const express = require("express");
+const app = express();
 
 const connectDB = require("./db/connect");
 
+//Routers
 const noteRouter = require("./Routes/noteRouter");
 
-const app = express();
-
-const morgan = require("morgan");
-const fs = require("fs");
-const path = require("path");
+//Middlewares
+const logger = require("./middlewares/logger");
 
 const cors = require("cors");
 app.use(cors());
+
 app.use(express.json());
 
-const logStream = fs.createWriteStream(path.join("log.txt"), {
-  flags: "a",
-});
-
-morgan.token("body", (req) => {
-  return JSON.stringify(req.body);
-});
-
-app.use(
-  morgan("[:date[clf]] :method :url :body", {
-    stream: logStream,
-  })
-);
+app.use(logger);
 
 app.use("/notes", noteRouter);
 
