@@ -59,7 +59,7 @@ export default function Register({
 
       <label>Password:</label>
       <input
-        type="text"
+        type="password"
         value={password}
         name="create_user_form_password"
         onChange={(e) => setPassword(e.target.value)}

@@ -27,13 +27,15 @@ export default function Header({
     <header>
       <h1>Notes App</h1>
       {token.length > 0 ? (
-        <button name="logout" onClick={() => handleLogout()}>
-          Logout
-        </button>
+        <>
+          <button name="logout" onClick={() => handleLogout()}>
+            Logout
+          </button>
+          <AddNote handleAddNote={handleAddNote} />
+        </>
       ) : (
         <>
           <Register handleRegister={handleRegister} />
-          <AddNote handleAddNote={handleAddNote} />
           <Login handleLogin={handleLogin} />
         </>
       )}
