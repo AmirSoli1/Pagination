@@ -6,3 +6,9 @@ export default interface NoteInterface {
   author: Author;
   content: string;
 }
+
+export interface NoteInterfaceAuthorless {
+  id: number;
+  title: string;
+  content: string;
+}

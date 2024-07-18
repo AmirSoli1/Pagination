@@ -358,3 +358,98 @@ button {
 .add-note.dark-mode button:hover {
   background-color: #666;
 }
+
+form[name="create_user_form"] {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+}
+
+form[name="create_user_form"] label {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+form[name="create_user_form"] input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+form[name="create_user_form"] button {
+  margin-top: 20px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+form[name="create_user_form"] button:hover {
+  background-color: #0056b3;
+}
+
+form[name="login_form"] {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+}
+
+form[name="login_form"] label {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+form[name="login_form"] input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+form[name="login_form"] button {
+  margin-top: 20px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+form[name="login_form"] button:hover {
+  background-color: #0056b3;
+}
+
+button[name="logout"] {
+  padding: 10px 20px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #dc3545;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button[name="logout"]:hover {
+  background-color: #c82333;
+}

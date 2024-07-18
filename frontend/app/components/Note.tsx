@@ -7,10 +7,12 @@ export default function Note({
   note,
   handleDelete,
   handleEditNote,
+  loggedName,
 }: {
   note: NoteInterface;
   handleDelete: (id: number) => void;
   handleEditNote: (newNote: NoteInterface) => void;
+  loggedName: string;
 }) {
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [noteContent, setNoteContent] = useState<string>(note.content);
@@ -33,13 +35,19 @@ export default function Note({
       <p>
         {note.author ? "By " + note.author.name + ", " + note.author.email : ""}
       </p>
-
-      <button name={`edit-${note.id}`} onClick={() => setIsEditing(true)}>
-        Edit
-      </button>
-      <button name={`delete-${note.id}`} onClick={() => handleDelete(note.id)}>
-        Delete
-      </button>
+      {loggedName === note.author.name && (
+        <>
+          <button name={`edit-${note.id}`} onClick={() => setIsEditing(true)}>
+            Edit
+          </button>
+          <button
+            name={`delete-${note.id}`}
+            onClick={() => handleDelete(note.id)}
+          >
+            Delete
+          </button>
+        </>
+      )}
     </li>
   );
 }

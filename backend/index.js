@@ -7,6 +7,8 @@ const connectDB = require("./db/connect");
 
 //Routers
 const noteRouter = require("./Routes/noteRouter");
+const userRouter = require("./Routes/userRouter");
+const loginRouter = require("./Routes/loginRouter");
 
 //Middlewares
 const logger = require("./middlewares/logger");
@@ -19,6 +21,8 @@ app.use(express.json());
 app.use(logger);
 
 app.use("/notes", noteRouter);
+app.use("/users", userRouter);
+app.use("/login", loginRouter);
 
 const PORT = process.env.PORT || 3001;
 
