@@ -2,9 +2,9 @@ import AddNote from "./AddNote";
 import Register from "./Register";
 import Login from "./Login";
 
-import { NoteInterfaceAuthorless } from "../interfaces/NoteInterface";
-import UserInterface from "../interfaces/UserInterfaces";
-import { UserLoginInterface } from "../interfaces/UserInterfaces";
+import { NoteInterfaceAuthorless } from "../utils/interfaces/NoteInterface";
+import UserInterface from "../utils/interfaces/UserInterfaces";
+import { UserLoginInterface } from "../utils/interfaces/UserInterfaces";
 
 export default function Header({
   toggleTheme,

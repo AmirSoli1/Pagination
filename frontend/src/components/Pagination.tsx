@@ -2,29 +2,13 @@ export default function Pagination({
   currentPage,
   onPageChange,
   lastPage,
+  getPageNumbers,
 }: {
   currentPage: number;
   onPageChange: (pageNumber: number) => void;
   lastPage: number;
+  getPageNumbers: () => number[];
 }) {
-  const getPageNumbers = () => {
-    if (lastPage <= 5) {
-      return Array.from({ length: lastPage }, (_, i) => i + 1);
-    } else if (currentPage < 3) {
-      return [1, 2, 3, 4, 5];
-    } else if (currentPage >= 3 && currentPage <= lastPage - 2) {
-      return [
-        currentPage - 2,
-        currentPage - 1,
-        currentPage,
-        currentPage + 1,
-        currentPage + 2,
-      ];
-    } else {
-      return [lastPage - 4, lastPage - 3, lastPage - 2, lastPage - 1, lastPage];
-    }
-  };
-
   return (
     <div className="pagination">
       <button onClick={() => onPageChange(1)} name="first">

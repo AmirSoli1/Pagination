@@ -1,4 +1,4 @@
-import NoteInterface from "../interfaces/NoteInterface";
+import NoteInterface from "../utils/interfaces/NoteInterface";
 
 import { useState } from "react";
 

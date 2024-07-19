@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { UserLoginInterface } from "../interfaces/UserInterfaces";
+import { UserLoginInterface } from "../utils/interfaces/UserInterfaces";
 
 export default function Login({
   handleLogin,
@@ -29,6 +29,7 @@ export default function Login({
         type="text"
         value={username}
         name="login_form_username"
+        data-testid="username"
         onChange={(e) => setUsername(e.target.value)}
         required
       />
@@ -38,6 +39,7 @@ export default function Login({
         type="password"
         value={password}
         name="login_form_password"
+        data-testid="password"
         onChange={(e) => setPassword(e.target.value)}
         required
       />

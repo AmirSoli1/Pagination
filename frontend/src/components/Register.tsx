@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import UserInterface from "../interfaces/UserInterfaces";
+import UserInterface from "../utils/interfaces/UserInterfaces";
 
 export default function Register({
   handleRegister,

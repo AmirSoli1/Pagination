@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import NoteInterface from "../interfaces/NoteInterface";
+import NoteInterface from "../utils/interfaces/NoteInterface";
 import EditNote from "./EditNote";
 
 export default function Note({

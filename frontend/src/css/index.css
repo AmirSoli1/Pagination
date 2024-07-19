@@ -267,7 +267,7 @@ button.light-mode:hover {
 }
 
 /* Dark mode styles */
-body.dark-mode {
+div.dark-mode {
   background-color: #333;
   color: #f5f5f5;
 }

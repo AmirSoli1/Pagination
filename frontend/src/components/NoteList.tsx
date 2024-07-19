@@ -1,4 +1,4 @@
-import NoteInterface from "../interfaces/NoteInterface";
+import NoteInterface from "../utils/interfaces/NoteInterface";
 import Note from "./Note";
 
 export default function NoteList({

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { NoteInterfaceAuthorless } from "../interfaces/NoteInterface";
+import { NoteInterfaceAuthorless } from "../utils/interfaces/NoteInterface";
 
 export default function AddNote({
   handleAddNote,
@@ -32,7 +32,6 @@ export default function AddNote({
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          required
         />
 
         <label>Content:</label>
