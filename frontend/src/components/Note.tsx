@@ -35,7 +35,7 @@ export default function Note({
       <p>
         {note.author ? "By " + note.author.name + ", " + note.author.email : ""}
       </p>
-      {loggedName === note.author.name && (
+      {note.author && loggedName === note.author.name && (
         <>
           <button name={`edit-${note.id}`} onClick={() => setIsEditing(true)}>
             Edit
