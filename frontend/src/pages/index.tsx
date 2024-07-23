@@ -12,8 +12,6 @@ import { NoteInterfaceAuthorless } from "../utils//interfaces/NoteInterface";
 import UserInterface from "../utils/interfaces/UserInterfaces";
 import { UserLoginInterface } from "../utils//interfaces/UserInterfaces";
 
-import "../css/index.css";
-
 const NOTES_URL = "http://localhost:3001";
 
 export async function getStaticProps() {
