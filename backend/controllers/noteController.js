@@ -104,6 +104,7 @@ const updateNote = async (req, res) => {
     }
 
     const decodedToken = jwt.verify(getTokenFrom(req), process.env.SECRET);
+
     if (!decodedToken.id) {
       return res
         .status(StatusCodes.UNAUTHORIZED)
