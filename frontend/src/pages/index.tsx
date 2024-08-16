@@ -12,7 +12,7 @@ import { NoteInterfaceAuthorless } from "../utils//interfaces/NoteInterface";
 import UserInterface from "../utils/interfaces/UserInterfaces";
 import { UserLoginInterface } from "../utils//interfaces/UserInterfaces";
 
-const NOTES_URL = "http://localhost:3001";
+const NOTES_URL = "http://backend:3001";
 
 export async function getStaticProps() {
   const response = await axios.get(`${NOTES_URL}/notes`, {
